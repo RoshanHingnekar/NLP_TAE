@@ -1,0 +1,29 @@
+databases:
+  - name: carebridge-postgres
+    databaseName: carebridge_db
+    user: carebridge_user
+    plan: free
+
+services:
+  - type: web
+    name: carebridge-hospital-assistant
+    runtime: python
+    plan: free
+    buildCommand: "pip install -r backend/requirements.txt && python backend/nlp/train.py"
+    startCommand: "gunicorn backend.app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: carebridge-postgres
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: ENVIRONMENT
+        value: production
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: NLP_CONFIDENCE_THRESHOLD
+        value: "0.55"

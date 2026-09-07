@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Profile | CareBridge Hospital Assistant</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Fictional healthcare project evaluation environment</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">CB</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub">Hospital Assistant</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/chatbot.html">AI Assistant</a></li>
+          <li><a href="/doctors.html">Doctors</a></li>
+          <li><a href="/departments.html">Departments</a></li>
+          <li><a href="/appointments.html">Appointments</a></li>
+          <li><a href="/dashboard.html">Dashboard</a></li>
+          <li><a href="/profile.html" class="active">Profile</a></li>
+          <li id="nav-admin-link" style="display:none;"><a href="/admin.html" style="color:var(--danger);font-weight:700;">Admin Panel</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" id="navbar-actions"></div>
+      <button class="hamburger" id="hamburger-btn">☰</button>
+    </div>
+  </header>
+
+  <main class="container container-narrow" style="padding:3.5rem 1.25rem;">
+    <div class="card" style="box-shadow:var(--shadow-lg);">
+      <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);">
+        <div class="doctor-avatar" style="width:72px;height:72px;font-size:1.8rem;margin:0;">👤</div>
+        <div>
+          <h1 style="font-size:1.6rem;margin-bottom:0.25rem;">Patient Profile</h1>
+          <p style="color:var(--text-muted);font-size:0.9rem;">View and update your personal contact details</p>
+        </div>
+      </div>
+
+      <form id="profile-form">
+        <div class="form-group">
+          <label class="form-label" for="profile-name">Full Name</label>
+          <input type="text" id="profile-name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="profile-email">Email Address (Read-only)</label>
+          <input type="email" id="profile-email" class="form-control" readonly style="background:var(--bg-subtle);cursor:not-allowed;">
+          <small style="color:var(--text-muted);font-size:0.75rem;">Account email cannot be modified directly.</small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="profile-phone">Contact Phone Number</label>
+          <input type="tel" id="profile-phone" class="form-control" placeholder="+1 (555) 019-XXXX">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="profile-role">Account Role (Read-only)</label>
+          <input type="text" id="profile-role" class="form-control" readonly style="background:var(--bg-subtle);cursor:not-allowed;font-weight:700;">
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:2rem;">
+          <a href="/dashboard.html" class="btn btn-secondary">Cancel</a>
+          <button type="submit" id="btn-save-profile" class="btn btn-primary">Save Profile Changes</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

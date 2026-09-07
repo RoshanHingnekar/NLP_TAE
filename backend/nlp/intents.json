@@ -1,0 +1,529 @@
+{
+  "intents": [
+    {
+      "intent": "greeting",
+      "examples": [
+        "Hello",
+        "Hi",
+        "Hey",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "Hello assistant good morning",
+        "Hello assistant",
+        "Hi there",
+        "Greetings",
+        "Hi chatbot",
+        "Hey hospital assistant",
+        "Hello how are you",
+        "Hi there I need some help",
+        "Hey there can you assist me",
+        "Good day to you",
+        "Start chat",
+        "Are you online"
+      ]
+    },
+    {
+      "intent": "goodbye",
+      "examples": [
+        "Bye",
+        "Goodbye",
+        "See you later",
+        "Have a great day",
+        "Talk to you later",
+        "Farewell",
+        "Bye bye",
+        "Good night",
+        "I am leaving now",
+        "That is all for now bye",
+        "End chat",
+        "Exit",
+        "Quit",
+        "See you soon",
+        "Catch you later"
+      ]
+    },
+    {
+      "intent": "thanks",
+      "examples": [
+        "Thank you",
+        "Thanks a lot",
+        "Thank you so much",
+        "Thanks for your assistance",
+        "Many thanks",
+        "I appreciate your help",
+        "That was very helpful",
+        "Awesome thanks",
+        "Thank you doctor assistant",
+        "Thanks for the details",
+        "Much obliged",
+        "Great help thank you",
+        "Thanks buddy",
+        "Thank you very much",
+        "You have been very helpful"
+      ]
+    },
+    {
+      "intent": "hospital_information",
+      "examples": [
+        "Tell me about the hospital",
+        "What is CareBridge hospital?",
+        "Hospital overview",
+        "Can you describe your hospital?",
+        "What kind of hospital is this?",
+        "Give me information about this medical center",
+        "Who founded this hospital?",
+        "Hospital history and mission",
+        "Tell me about your healthcare facility",
+        "What hospital are you representing?",
+        "Is this a multi-specialty hospital?",
+        "Hospital profile and details",
+        "About CareBridge demo hospital",
+        "Hospital background",
+        "Can you introduce your hospital?"
+      ]
+    },
+    {
+      "intent": "hospital_location",
+      "examples": [
+        "Where is the hospital located?",
+        "Hospital address",
+        "How can I reach the hospital?",
+        "Where can I find CareBridge hospital?",
+        "What is your street address?",
+        "Directions to the hospital",
+        "Which city is the hospital in?",
+        "Can you give me the location map coordinates?",
+        "Where are you located exactly?",
+        "Hospital campus address",
+        "How do I get to CareBridge hospital?",
+        "What is the nearest metro or bus stop?",
+        "Give me hospital directions",
+        "Where is your main building situated?",
+        "Hospital location details"
+      ]
+    },
+    {
+      "intent": "contact_information",
+      "examples": [
+        "What is the hospital phone number?",
+        "How do I contact customer support?",
+        "Hospital contact number",
+        "Email address of the hospital",
+        "Reception phone number",
+        "Give me your helpline number",
+        "Hospital contact details",
+        "How can I call the front desk?",
+        "Hospital telephone directory",
+        "What is your customer care email?",
+        "Who can I call for inquiries?",
+        "Contact phone for appointments desk",
+        "Main desk contact number",
+        "How do I reach administration by phone?",
+        "Helpdesk phone number"
+      ]
+    },
+    {
+      "intent": "department_information",
+      "examples": [
+        "What departments do you have?",
+        "What clinical departments do you have?",
+        "List all hospital departments",
+        "Show me clinical departments",
+        "Tell me about cardiology department",
+        "Do you have a neurology department?",
+        "Orthopedics department details",
+        "What specialized medical departments are available?",
+        "Can you list your medical specialties?",
+        "Information on pediatrics department",
+        "Dermatology wing location and details",
+        "Gynecology department services",
+        "Show available medical divisions",
+        "What branches of medicine do you cover?",
+        "Tell me about ENT department",
+        "Do you have an ophthalmology department?"
+      ]
+    },
+    {
+      "intent": "doctor_information",
+      "examples": [
+        "Who are your doctors?",
+        "Who are your doctors in cardiology?",
+        "Tell me about Dr Sharma",
+        "Find a doctor in cardiology",
+        "List all doctors",
+        "Show doctor profiles",
+        "Who is the best orthopedic surgeon here?",
+        "Tell me about Dr Priya Patel",
+        "Who is Dr Rajesh Kumar?",
+        "Doctor qualification and experience",
+        "Can you show me pediatrician profiles?",
+        "Search for a specialist doctor",
+        "Which gynecologists work here?",
+        "Show me ENT specialists",
+        "List doctors in general medicine",
+        "Who are the dermatologists available?"
+      ]
+    },
+    {
+      "intent": "doctor_availability",
+      "examples": [
+        "When is Dr Sharma available?",
+        "Is the cardiologist available today?",
+        "Check doctor availability",
+        "What days does Dr Rajesh Kumar sit in OPD?",
+        "Doctor working hours and schedule",
+        "Is Dr Priya Patel on duty tomorrow?",
+        "What are the consulting hours of Dr Ananya Verma?",
+        "Can I see a doctor today afternoon?",
+        "When does the neurologist consult patients?",
+        "Doctor roster and timings",
+        "Is Dr Vikram Singh available on Monday?",
+        "Check doctor schedule for this week",
+        "What time does the eye specialist consult?",
+        "Is doctor available right now?",
+        "When is the orthopedic doctor sitting?"
+      ]
+    },
+    {
+      "intent": "appointment_booking",
+      "examples": [
+        "I want to book an appointment",
+        "How can I book an appointment?",
+        "Schedule an appointment with a doctor",
+        "Book a visit with Dr Sharma",
+        "I need an appointment tomorrow",
+        "Can I reserve a consultation slot?",
+        "Book me a slot for cardiology",
+        "I would like to see a specialist",
+        "Make an appointment with Dr Rajesh",
+        "Appointment reservation process",
+        "Can you help me book an appointment?",
+        "Book doctor consultation",
+        "Schedule a doctor visit",
+        "I want to make a clinic booking",
+        "Book appointment for skin problems"
+      ]
+    },
+    {
+      "intent": "appointment_cancel",
+      "examples": [
+        "Cancel my appointment",
+        "I want to cancel my doctor booking",
+        "How do I cancel an appointment?",
+        "Cancel appointment APT-1002",
+        "I cannot visit today please cancel my slot",
+        "Revoke my consultation booking",
+        "Cancel doctor visit",
+        "Can I drop my appointment?",
+        "Delete my appointment reservation",
+        "Cancel my upcoming booking",
+        "I need to cancel my scheduled visit",
+        "How to cancel a booked slot?",
+        "Cancel appointment request",
+        "Remove my doctor appointment",
+        "I want to drop my slot"
+      ]
+    },
+    {
+      "intent": "appointment_status",
+      "examples": [
+        "Check my appointment status",
+        "What is the status of my appointment?",
+        "Is my appointment confirmed?",
+        "Show my upcoming appointments",
+        "View my booked consultations",
+        "Check appointment APT-1001",
+        "Did my doctor visit get confirmed?",
+        "Where can I see my appointment details?",
+        "Status of my booking",
+        "Do I have any appointments today?",
+        "List my appointments",
+        "Is my doctor appointment still scheduled?",
+        "Show my pending bookings",
+        "Check my appointment schedule",
+        "What time is my appointment booked for?"
+      ]
+    },
+    {
+      "intent": "opd_timings",
+      "examples": [
+        "What are the OPD timings?",
+        "When does OPD start?",
+        "When can I visit outpatient department?",
+        "Tell me OPD hours",
+        "What time does outpatient service open?",
+        "When does morning OPD end?",
+        "OPD operating hours",
+        "Is OPD open on Sundays?",
+        "What are the hospital outpatient timings?",
+        "When do OPD clinics operate?",
+        "OPD schedule for weekdays",
+        "At what time does the outpatient counter open?",
+        "OPD registration closing time",
+        "Can I walk in for OPD in the evening?",
+        "OPD hours for consultation"
+      ]
+    },
+    {
+      "intent": "visiting_hours",
+      "examples": [
+        "What are patient visiting hours?",
+        "When can relatives visit admitted patients?",
+        "Inpatient visiting timings",
+        "Can I visit a patient right now?",
+        "Visiting rules for ICU and general wards",
+        "What time is evening visiting allowed?",
+        "Can family visit in the afternoon?",
+        "Visitor hours for admitted patients",
+        "When can friends see hospital patients?",
+        "Visiting pass guidelines and timings",
+        "What are the ward visiting times?",
+        "How many visitors are allowed per patient?",
+        "ICU visiting schedule",
+        "Evening visiting hours",
+        "Are children allowed during visiting hours?"
+      ]
+    },
+    {
+      "intent": "pharmacy_information",
+      "examples": [
+        "Where is the hospital pharmacy?",
+        "Is the pharmacy open 24/7?",
+        "Medical store timings",
+        "Can I buy medicines at the hospital?",
+        "Do you have an in-house medical shop?",
+        "Where can I get prescribed drugs?",
+        "Hospital chemist shop hours",
+        "Is the dispensary open at night?",
+        "Pharmacy location and contact",
+        "Do you provide home delivery of medicines?",
+        "Can I purchase surgical items at pharmacy?",
+        "Where is the outpatient pharmacy counter?",
+        "24 hour pharmacy availability",
+        "Chemist counter location",
+        "Hospital medicine store details"
+      ]
+    },
+    {
+      "intent": "laboratory_information",
+      "examples": [
+        "Where is the pathology laboratory?",
+        "What are the blood test lab timings?",
+        "How do I collect diagnostic lab reports?",
+        "Do you do blood tests and urine tests?",
+        "Can I get lipid profile test here?",
+        "Pathology lab operating hours",
+        "How long does it take for blood test results?",
+        "Do you offer fasting blood sample collection?",
+        "Lab test price and availability",
+        "Where do I give sample for blood test?",
+        "Is the diagnostic laboratory open on weekends?",
+        "Can I download laboratory reports online?",
+        "Thyroid profile test details",
+        "Complete blood count CBC test",
+        "Pathology department contact"
+      ]
+    },
+    {
+      "intent": "radiology_information",
+      "examples": [
+        "Do you have X-ray and MRI facilities?",
+        "Where is radiology department?",
+        "Can I get a CT scan done?",
+        "Ultrasound and sonography timings",
+        "How do I book an MRI appointment?",
+        "Radiology scan charges and hours",
+        "Is X-ray available 24/7 in emergency?",
+        "Where do I go for chest X-ray?",
+        "Sonography appointment process",
+        "PET scan and CT scan availability",
+        "Mammography facility details",
+        "Radiology diagnostic center location",
+        "How much does a brain MRI cost?",
+        "DEXA bone density scan availability",
+        "Radiology reports collection"
+      ]
+    },
+    {
+      "intent": "emergency",
+      "examples": [
+        "This is an emergency",
+        "Where is the casualty department?",
+        "Emergency room location",
+        "I need immediate medical care",
+        "Is the emergency department open 24/7?",
+        "Urgent trauma center contact",
+        "How do I call an ambulance?",
+        "Ambulance emergency helpline",
+        "Accident and emergency ward",
+        "Critical care emergency unit",
+        "Is doctor available for emergency right now?",
+        "Emergency hotline number",
+        "Where do ambulances arrive at the hospital?",
+        "Trauma care services",
+        "Immediate urgent help needed"
+      ]
+    },
+    {
+      "intent": "facilities",
+      "examples": [
+        "What facilities are available at the hospital?",
+        "Is there a cafeteria or food court?",
+        "Do you have wheelchair assistance?",
+        "Parking facilities at hospital",
+        "Is there an ATM inside the hospital premises?",
+        "Wi-Fi facilities for patients and attendants",
+        "Do you have prayer room or meditation area?",
+        "Blood bank facility details",
+        "Does the hospital have an intensive care unit ICU?",
+        "Private rooms and deluxe suite availability",
+        "Ambulance service availability",
+        "Is there valet parking available?",
+        "Are drinking water dispensers available on all floors?",
+        "Waiting lounge facilities",
+        "Hospital amenities list"
+      ]
+    },
+    {
+      "intent": "insurance",
+      "examples": [
+        "Which health insurances are accepted?",
+        "Do you have cashless insurance facility?",
+        "Is Mediclaim accepted at CareBridge?",
+        "List of empanelled insurance companies and TPAs",
+        "How do I claim health insurance for hospitalization?",
+        "TPA helpdesk location",
+        "Does government health insurance cover treatment?",
+        "Star Health cashless hospital",
+        "Corporate insurance coverage",
+        "What documents are needed for cashless insurance pre-authorization?",
+        "Insurance claim reimbursement process",
+        "Is HDFC Ergo insurance accepted?",
+        "Empanelled TPAs list",
+        "Cashless hospitalization requirements",
+        "Health insurance query desk"
+      ]
+    },
+    {
+      "intent": "billing",
+      "examples": [
+        "How can I pay hospital bills?",
+        "What payment methods do you accept?",
+        "Can I pay with credit card or UPI?",
+        "Where is the billing department located?",
+        "Request an estimated cost of treatment",
+        "Room rent charges per day",
+        "ICU per day charges",
+        "How do I get an itemized hospital bill?",
+        "Consultation fee payment options",
+        "Can I pay online through hospital portal?",
+        "Billing counter operating hours",
+        "Discharge billing process and duration",
+        "Is installment or EMI payment available?",
+        "Estimate cost for general surgery",
+        "Billing desk phone extension"
+      ]
+    },
+    {
+      "intent": "health_check",
+      "examples": [
+        "Do you offer executive health checkup packages?",
+        "Master health check package details",
+        "Preventive health checkup costs",
+        "What tests are included in whole body checkup?",
+        "Senior citizen health check package",
+        "Cardiac health screening package",
+        "Women health checkup plan",
+        "How to prepare for master health check?",
+        "Book a full body health checkup",
+        "Annual health checkup pricing",
+        "Do I need fasting before health screening?",
+        "Diabetes care health checkup",
+        "Comprehensive health check program",
+        "Pre-employment medical checkup",
+        "Wellness package options"
+      ]
+    },
+    {
+      "intent": "symptom_guidance",
+      "examples": [
+        "I have a mild headache what should I do?",
+        "I am having low grade fever and body aches",
+        "I feel slight stomach pain and nausea",
+        "General advice for cold and cough",
+        "I have a sore throat and mild chills",
+        "What can I do for mild backache?",
+        "I am experiencing slight dizziness",
+        "General guidance for seasonal allergy",
+        "Feeling fatigued and weak",
+        "What helps for minor acidity and heartburn?",
+        "Mild knee joint pain advice",
+        "Dry skin and slight itching",
+        "I have mild indigestion after meals",
+        "Guidance on persistent sneezing and runny nose",
+        "Minor muscle sprain relief advice"
+      ]
+    },
+    {
+      "intent": "department_recommendation",
+      "examples": [
+        "Which department should I visit for skin problems?",
+        "Which doctor should I see for heart pain?",
+        "Which department handles bone fractures and joint pain?",
+        "Where should I take my child for fever?",
+        "Which department deals with eye vision problems?",
+        "I have ear pain which department do I go to?",
+        "Which specialist should I consult for pregnancy?",
+        "Recommend a department for toothache",
+        "Which clinic handles nervous system disorders?",
+        "Where do I go for diabetes management?",
+        "Which doctor treats stomach ulcers?",
+        "I have kidney stones which department?",
+        "Who should I see for persistent throat infection?",
+        "Recommend department for child vaccination",
+        "Which department should I visit for migraine?"
+      ]
+    },
+    {
+      "intent": "faq",
+      "examples": [
+        "Can you answer some frequently asked questions?",
+        "What are common questions asked by visitors?",
+        "Tell me some hospital FAQs",
+        "Do you have a question and answer guide?",
+        "Frequently asked questions regarding admission",
+        "Where can I find hospital rules and FAQs?",
+        "Read common queries",
+        "FAQ about doctor appointments",
+        "FAQ on visiting hours",
+        "Common queries regarding billing",
+        "Hospital policy questions",
+        "What do patients usually ask?",
+        "Show frequently asked questions",
+        "Help with frequently asked questions",
+        "Visitor policies and questions"
+      ]
+    },
+    {
+      "intent": "unknown",
+      "examples": [
+        "What is the weather in Paris?",
+        "Can you order a pizza for me?",
+        "Tell me a joke about robots",
+        "Play some rock music",
+        "Who won the world cup in 2022?",
+        "Explain quantum computing theory",
+        "Can you write Python code for a game?",
+        "What is the capital of Australia?",
+        "Translate this sentence to French",
+        "Solve this math equation for x",
+        "Which movie should I watch tonight?",
+        "Tell me stock market predictions",
+        "Random gibberish asdfghjkl",
+        "Buy flight tickets to New York",
+        "How do I fix my car engine?"
+      ]
+    }
+  ]
+}

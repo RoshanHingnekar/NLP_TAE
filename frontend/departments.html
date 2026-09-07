@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinical Departments | CareBridge Hospital Assistant</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Fictional healthcare project evaluation environment</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">CB</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub">Hospital Assistant</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/chatbot.html">AI Assistant</a></li>
+          <li><a href="/doctors.html">Doctors</a></li>
+          <li><a href="/departments.html" class="active">Departments</a></li>
+          <li><a href="/appointments.html">Appointments</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+          <li id="nav-dashboard-link" style="display:none;"><a href="/dashboard.html">Dashboard</a></li>
+          <li id="nav-admin-link" style="display:none;"><a href="/admin.html" style="color:var(--danger);font-weight:700;">Admin Panel</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" id="navbar-actions"></div>
+      <button class="hamburger" id="hamburger-btn">☰</button>
+    </div>
+  </header>
+
+  <main class="container" style="padding:3rem 1.25rem;">
+    <div class="section-header" style="text-align:left;max-width:100%;margin-bottom:2.5rem;">
+      <span class="tag">Specialized Wings</span>
+      <h1 style="font-size:2.2rem;margin-bottom:0.5rem;">Clinical Departments & Specialties</h1>
+      <p style="color:var(--text-muted);">Explore our 13 clinical divisions, outpatient hours, and specialist medical faculties.</p>
+    </div>
+
+    <!-- Departments Grid -->
+    <div class="grid-3" id="departments-grid">
+      <!-- Injected dynamically via script.js -->
+      <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted);">Loading hospital departments...</div>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

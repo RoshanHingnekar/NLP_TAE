@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | CareBridge Hospital Assistant</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Fictional healthcare project evaluation environment</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">CB</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub">Hospital Assistant</span>
+        </div>
+      </a>
+      <div class="nav-actions" id="navbar-actions">
+        <a href="/register.html" class="btn btn-outline btn-sm">Create Account</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 1.25rem;">
+    <div class="card" style="width:100%;max-width:440px;box-shadow:var(--shadow-xl);">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div class="logo-icon" style="margin:0 auto 1rem;width:48px;height:48px;font-size:1.4rem;">CB</div>
+        <h2 style="font-size:1.6rem;margin-bottom:0.25rem;">Welcome Back</h2>
+        <p style="color:var(--text-muted);font-size:0.92rem;">Sign in to access your appointments & medical chat</p>
+      </div>
+
+      <!-- Quick Demo Login Helpers -->
+      <div style="background:var(--bg-subtle);padding:1rem;border-radius:var(--radius-md);margin-bottom:1.5rem;border:1px solid var(--border);">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em;">One-Click Demo Accounts</div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="fillDemo('patient')">👤 Patient</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="fillDemo('staff')">🩺 Staff</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="fillDemo('admin')">🔑 Admin</button>
+        </div>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="e.g. patient@carebridge.demo" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width:100%;margin-top:0.5rem;">Sign In</button>
+      </form>
+
+      <div style="text-align:center;margin-top:1.5rem;font-size:0.9rem;color:var(--text-muted);">
+        Don't have an account? <a href="/register.html" style="font-weight:600;">Register as Patient</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+  <script>
+    function fillDemo(role) {
+      const emailInput = document.getElementById('login-email');
+      const passInput = document.getElementById('login-password');
+      if (role === 'patient') {
+        emailInput.value = 'patient@carebridge.demo';
+        passInput.value = 'Patient@123';
+      } else if (role === 'staff') {
+        emailInput.value = 'staff@carebridge.demo';
+        passInput.value = 'Staff@123';
+      } else if (role === 'admin') {
+        emailInput.value = 'admin@carebridge.demo';
+        passInput.value = 'Admin@123';
+      }
+    }
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      const btn = document.getElementById('btn-login-submit');
+
+      setButtonLoading(btn, true, 'Signing In...');
+
+      try {
+        const res = await apiRequest('/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ email, password })
+        });
+
+        Auth.setSession(res.token, res.user);
+        showToast('✓ Login successful! Redirecting...', 'success', 2000);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+
+        setTimeout(() => {
+          if (redirect) {
+            window.location.href = redirect;
+          } else if (res.user.role === 'admin') {
+            window.location.href = '/admin.html';
+          } else {
+            window.location.href = '/dashboard.html';
+          }
+        }, 600);
+
+      } catch (err) {
+        showToast(`✕ ${err.message}`, 'error', 4000);
+      } finally {
+        setButtonLoading(btn, false);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctors Directory | CareBridge Hospital Assistant</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Fictional healthcare project evaluation environment</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">CB</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub">Hospital Assistant</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/chatbot.html">AI Assistant</a></li>
+          <li><a href="/doctors.html" class="active">Doctors</a></li>
+          <li><a href="/departments.html">Departments</a></li>
+          <li><a href="/appointments.html">Appointments</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+          <li id="nav-dashboard-link" style="display:none;"><a href="/dashboard.html">Dashboard</a></li>
+          <li id="nav-admin-link" style="display:none;"><a href="/admin.html" style="color:var(--danger);font-weight:700;">Admin Panel</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" id="navbar-actions"></div>
+      <button class="hamburger" id="hamburger-btn">☰</button>
+    </div>
+  </header>
+
+  <main class="container" style="padding:3rem 1.25rem;">
+    <div class="section-header" style="text-align:left;max-width:100%;margin-bottom:2rem;">
+      <span class="tag">Specialist Directory</span>
+      <h1 style="font-size:2.2rem;margin-bottom:0.5rem;">Find a Specialist Doctor</h1>
+      <p style="color:var(--text-muted);">Browse qualified medical consultants across 13 hospital departments.</p>
+    </div>
+
+    <!-- Filters Bar -->
+    <div class="card" style="margin-bottom:2.5rem;padding:1.25rem;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:1rem;align-items:flex-end;">
+        <div>
+          <label class="form-label" for="doctor-search">Search by Name or Keyword</label>
+          <input type="text" id="doctor-search" class="form-control" placeholder="e.g. Sharma, Cardiology, joint...">
+        </div>
+
+        <div>
+          <label class="form-label" for="doctor-dept-filter">Filter by Department</label>
+          <select id="doctor-dept-filter" class="form-control">
+            <option value="">All Clinical Departments</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Doctors Grid -->
+    <div class="grid-3" id="doctors-grid">
+      <!-- Injected via script.js -->
+    </div>
+  </main>
+
+  <!-- Reusable Booking Modal Injected dynamically by script.js -->
+
+  <script src="/script.js"></script>
+</body>
+</html>

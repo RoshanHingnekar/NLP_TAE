@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Registration | CareBridge Hospital Assistant</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Fictional healthcare project evaluation environment</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">CB</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub">Hospital Assistant</span>
+        </div>
+      </a>
+      <div class="nav-actions" id="navbar-actions">
+        <a href="/login.html" class="btn btn-outline btn-sm">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 1.25rem;">
+    <div class="card" style="width:100%;max-width:480px;box-shadow:var(--shadow-xl);">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div class="logo-icon" style="margin:0 auto 1rem;width:48px;height:48px;font-size:1.4rem;">CB</div>
+        <h2 style="font-size:1.6rem;margin-bottom:0.25rem;">Create Patient Account</h2>
+        <p style="color:var(--text-muted);font-size:0.92rem;">Register to book appointments and track conversations</p>
+      </div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. John Doe" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="e.g. john.doe@example.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-phone">Phone Number</label>
+          <input type="tel" id="reg-phone" class="form-control" placeholder="e.g. +1 (555) 019-3322" autocomplete="tel">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="At least 6 characters" required autocomplete="new-password" minlength="6">
+        </div>
+
+        <button type="submit" id="btn-register-submit" class="btn btn-primary" style="width:100%;margin-top:0.5rem;">Create Account</button>
+      </form>
+
+      <div style="text-align:center;margin-top:1.5rem;font-size:0.9rem;color:var(--text-muted);">
+        Already have an account? <a href="/login.html" style="font-weight:600;">Sign In</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const password = document.getElementById('reg-password').value.trim();
+      const btn = document.getElementById('btn-register-submit');
+
+      setButtonLoading(btn, true, 'Creating Account...');
+
+      try {
+        const res = await apiRequest('/auth/register', {
+          method: 'POST',
+          body: JSON.stringify({ name, email, phone, password, role: 'patient' })
+        });
+
+        Auth.setSession(res.token, res.user);
+        showToast('✓ Registration successful! Welcome to CareBridge.', 'success', 2500);
+
+        setTimeout(() => {
+          window.location.href = '/dashboard.html';
+        }, 800);
+
+      } catch (err) {
+        showToast(`✕ ${err.message}`, 'error', 4000);
+      } finally {
+        setButtonLoading(btn, false);
+      }
+    });
+  </script>
+</body>
+</html>

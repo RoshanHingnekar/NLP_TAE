@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard & Analytics | CareBridge Hospital</title>
+  <link rel="stylesheet" href="/style.css">
+  <!-- Chart.js for analytics visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body style="background:var(--bg-main);">
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Administrator Management Console</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon" style="background:linear-gradient(135deg, var(--danger), #b91c1c);">ADM</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub" style="color:var(--danger);">Administration</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/dashboard.html">Patient View</a></li>
+          <li><a href="/doctors.html">Doctors Directory</a></li>
+          <li><a href="/appointments.html">All Appointments</a></li>
+          <li><a href="/chatbot.html">AI Chatbot</a></li>
+          <li><a href="/admin.html" class="active" style="color:var(--danger);font-weight:700;">Admin Panel</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" id="navbar-actions"></div>
+      <button class="hamburger" id="hamburger-btn">☰</button>
+    </div>
+  </header>
+
+  <main class="container" style="padding:2.5rem 1.25rem;">
+    <!-- Admin Header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem;">
+      <div>
+        <h1 style="font-size:2rem;margin-bottom:0.25rem;">Hospital Intelligence & Management</h1>
+        <p style="color:var(--text-muted);font-size:0.95rem;">Real-time clinical capacity, NLP performance metrics, and directory administration.</p>
+      </div>
+      <div style="display:flex;gap:0.75rem;">
+        <button type="button" class="btn btn-primary" onclick="openAddDoctorModal()">+ Add Doctor</button>
+        <button type="button" class="btn btn-secondary" onclick="openAddDeptModal()">+ Add Department</button>
+        <button type="button" class="btn btn-secondary" onclick="openAddFaqModal()">+ Add FAQ</button>
+      </div>
+    </div>
+
+    <!-- Metrics Row -->
+    <div class="grid-4" style="margin-bottom:2.5rem;">
+      <div class="card">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Total Registered Patients</div>
+        <div id="metric-patients" style="font-size:2rem;font-weight:800;color:var(--primary);margin:0.25rem 0;">-</div>
+        <div style="font-size:0.75rem;color:var(--success);font-weight:600;">✓ Database verified</div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Total Doctors</div>
+        <div id="metric-doctors" style="font-size:2rem;font-weight:800;color:var(--secondary);margin:0.25rem 0;">-</div>
+        <div style="font-size:0.75rem;color:var(--text-muted);">Across 13 departments</div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Consultations Today</div>
+        <div id="metric-appointments-today" style="font-size:2rem;font-weight:800;color:var(--accent);margin:0.25rem 0;">-</div>
+        <div style="font-size:0.75rem;color:var(--primary);font-weight:600;">Real-time booking sync</div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Emergency Flags (Safety)</div>
+        <div id="metric-emergency-flags" style="font-size:2rem;font-weight:800;color:var(--danger);margin:0.25rem 0;">-</div>
+        <div style="font-size:0.75rem;color:var(--danger);font-weight:600;">⚠ High priority overrides</div>
+      </div>
+    </div>
+
+    <!-- Secondary Metrics -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1rem;margin-bottom:2.5rem;">
+      <div class="card" style="padding:1rem;">
+        <span style="font-size:0.8rem;color:var(--text-muted);">Departments:</span>
+        <strong id="metric-departments" style="font-size:1.2rem;margin-left:0.5rem;">13</strong>
+      </div>
+      <div class="card" style="padding:1rem;">
+        <span style="font-size:0.8rem;color:var(--text-muted);">Chat Sessions:</span>
+        <strong id="metric-chat-sessions" style="font-size:1.2rem;margin-left:0.5rem;">-</strong>
+      </div>
+      <div class="card" style="padding:1rem;">
+        <span style="font-size:0.8rem;color:var(--text-muted);">Avg NLP Confidence:</span>
+        <strong id="metric-avg-confidence" style="font-size:1.2rem;color:var(--success);margin-left:0.5rem;">88%</strong>
+      </div>
+      <div class="card" style="padding:1rem;">
+        <span style="font-size:0.8rem;color:var(--text-muted);">System Health:</span>
+        <strong style="font-size:1.1rem;color:var(--success);margin-left:0.5rem;">● OK (200)</strong>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(360px, 1fr));gap:1.5rem;margin-bottom:3rem;">
+      <div class="card">
+        <h3 style="font-size:1.1rem;margin-bottom:1rem;">Appointments Over Time</h3>
+        <div style="height:260px;position:relative;">
+          <canvas id="chart-appointments-timeline"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:1.1rem;margin-bottom:1rem;">Appointments by Department</h3>
+        <div style="height:260px;position:relative;">
+          <canvas id="chart-appointments-dept"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="font-size:1.1rem;margin-bottom:1rem;">Chatbot Intent Distribution</h3>
+        <div style="height:260px;position:relative;">
+          <canvas id="chart-intent-dist"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Management Tables Section -->
+    <div style="margin-top:2rem;">
+      <h2 style="font-size:1.4rem;margin-bottom:1rem;">Doctors Management</h2>
+      <div class="table-responsive" style="margin-bottom:2.5rem;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Doctor Name</th>
+              <th>Department</th>
+              <th>Specialization</th>
+              <th>Fee</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-doctors-tbody">
+            <!-- Injected via script.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size:1.4rem;margin-bottom:1rem;">Departments Directory</h2>
+      <div class="table-responsive" style="margin-bottom:2.5rem;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Location</th>
+              <th>OPD Timings</th>
+              <th>Active Doctors</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-depts-tbody">
+            <!-- Injected via script.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="font-size:1.4rem;margin-bottom:1rem;">FAQ Knowledge Base</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Question</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-faqs-tbody">
+            <!-- Injected via script.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add Doctor Modal -->
+  <div class="modal-overlay" id="add-doctor-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Add New Specialist Doctor</h3>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('add-doctor-modal')">✕</button>
+      </div>
+      <form id="add-doctor-form" onsubmit="submitAddDoctor(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Doctor Name</label>
+            <input type="text" id="add-doc-name" class="form-control" placeholder="e.g. Dr. Robert Chen" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department ID (1-13)</label>
+            <input type="number" id="add-doc-dept" class="form-control" min="1" max="13" value="1" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Specialization</label>
+            <input type="text" id="add-doc-spec" class="form-control" placeholder="e.g. Pediatric Cardiology" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Qualification & Experience</label>
+            <input type="text" id="add-doc-qual" class="form-control" placeholder="e.g. MD, DNB (Cardiology)" required style="margin-bottom:0.5rem;">
+            <input type="text" id="add-doc-exp" class="form-control" placeholder="e.g. 12 Years" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Available Days</label>
+            <input type="text" id="add-doc-days" class="form-control" value="Monday, Wednesday, Friday" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Consultation Fee ($)</label>
+            <input type="number" id="add-doc-fee" class="form-control" value="50.0" step="5" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('add-doctor-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Doctor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Department Modal -->
+  <div class="modal-overlay" id="add-dept-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Add Clinical Department</h3>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('add-dept-modal')">✕</button>
+      </div>
+      <form id="add-dept-form" onsubmit="submitAddDept(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Department Name</label>
+            <input type="text" id="add-dept-name" class="form-control" placeholder="e.g. Pulmonology" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea id="add-dept-desc" class="form-control" rows="2" placeholder="Clinical focus and services..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Campus Location</label>
+            <input type="text" id="add-dept-loc" class="form-control" placeholder="e.g. Wing B, 2nd Floor" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">OPD Timings</label>
+            <input type="text" id="add-dept-time" class="form-control" value="09:00 AM - 05:00 PM (Mon-Sat)" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('add-dept-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Department</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add FAQ Modal -->
+  <div class="modal-overlay" id="add-faq-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Add Knowledge Base FAQ</h3>
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('add-faq-modal')">✕</button>
+      </div>
+      <form id="add-faq-form" onsubmit="submitAddFaq(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select id="add-faq-cat" class="form-control">
+              <option value="General">General</option>
+              <option value="Appointments">Appointments</option>
+              <option value="Doctors">Doctors</option>
+              <option value="Departments">Departments</option>
+              <option value="Billing">Billing</option>
+              <option value="Insurance">Insurance</option>
+              <option value="Facilities">Facilities</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Question</label>
+            <input type="text" id="add-faq-q" class="form-control" placeholder="e.g. How do I get an ambulance?" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Answer</label>
+            <textarea id="add-faq-a" class="form-control" rows="3" placeholder="Provide accurate guidance..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('add-faq-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save FAQ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+  <script>
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    }
+
+    function openAddDoctorModal() {
+      document.getElementById('add-doctor-modal').classList.add('active');
+    }
+
+    function openAddDeptModal() {
+      document.getElementById('add-dept-modal').classList.add('active');
+    }
+
+    function openAddFaqModal() {
+      document.getElementById('add-faq-modal').classList.add('active');
+    }
+
+    async function submitAddDoctor(e) {
+      e.preventDefault();
+      const body = {
+        name: document.getElementById('add-doc-name').value,
+        department_id: parseInt(document.getElementById('add-doc-dept').value),
+        specialization: document.getElementById('add-doc-spec').value,
+        qualification: document.getElementById('add-doc-qual').value,
+        experience: document.getElementById('add-doc-exp').value,
+        available_days: document.getElementById('add-doc-days').value,
+        consultation_fee: parseFloat(document.getElementById('add-doc-fee').value),
+        start_time: "09:00",
+        end_time: "17:00",
+        room_number: "Room 102",
+        status: "active"
+      };
+
+      try {
+        await apiRequest('/admin/doctors', { method: 'POST', body: JSON.stringify(body) });
+        closeModal('add-doctor-modal');
+        showToast('Doctor added successfully.', 'success');
+        loadAdminDoctors();
+      } catch (err) {
+        showToast(`✕ ${err.message}`, 'error');
+      }
+    }
+
+    async function submitAddDept(e) {
+      e.preventDefault();
+      const body = {
+        name: document.getElementById('add-dept-name').value,
+        description: document.getElementById('add-dept-desc').value,
+        location: document.getElementById('add-dept-loc').value,
+        opd_timing: document.getElementById('add-dept-time').value
+      };
+
+      try {
+        await apiRequest('/admin/departments', { method: 'POST', body: JSON.stringify(body) });
+        closeModal('add-dept-modal');
+        showToast('Department added successfully.', 'success');
+        loadAdminDepartments();
+      } catch (err) {
+        showToast(`✕ ${err.message}`, 'error');
+      }
+    }
+
+    async function submitAddFaq(e) {
+      e.preventDefault();
+      const body = {
+        category: document.getElementById('add-faq-cat').value,
+        question: document.getElementById('add-faq-q').value,
+        answer: document.getElementById('add-faq-a').value
+      };
+
+      try {
+        await apiRequest('/admin/faqs', { method: 'POST', body: JSON.stringify(body) });
+        closeModal('add-faq-modal');
+        showToast('FAQ added successfully.', 'success');
+        loadAdminFaqs();
+      } catch (err) {
+        showToast(`✕ ${err.message}`, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

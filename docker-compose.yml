@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: carebridge_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: carebridge_user
+      POSTGRES_PASSWORD: carebridge_pass
+      POSTGRES_DB: carebridge_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U carebridge_user -d carebridge_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: carebridge_app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://carebridge_user:carebridge_pass@postgres:5432/carebridge_db
+      SECRET_KEY: carebridge-docker-super-secret-key-2025
+      JWT_SECRET_KEY: carebridge-docker-jwt-key-2025
+      ENVIRONMENT: production
+      PORT: 5000
+      CORS_ORIGINS: "*"
+    ports:
+      - "5000:5000"
+
+volumes:
+  postgres_data:

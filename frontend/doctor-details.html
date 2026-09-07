@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Profile | CareBridge Hospital Assistant</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Fictional healthcare project evaluation environment</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">CB</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub">Hospital Assistant</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/chatbot.html">AI Assistant</a></li>
+          <li><a href="/doctors.html">Doctors</a></li>
+          <li><a href="/departments.html">Departments</a></li>
+          <li><a href="/appointments.html">Appointments</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+          <li id="nav-dashboard-link" style="display:none;"><a href="/dashboard.html">Dashboard</a></li>
+          <li id="nav-admin-link" style="display:none;"><a href="/admin.html" style="color:var(--danger);font-weight:700;">Admin Panel</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" id="navbar-actions"></div>
+      <button class="hamburger" id="hamburger-btn">☰</button>
+    </div>
+  </header>
+
+  <main class="container" style="padding:3.5rem 1.25rem;">
+    <div id="doctor-details-container">
+      <!-- Injected dynamically via script.js -->
+      <div style="text-align:center;padding:3rem;color:var(--text-muted);">Loading doctor details...</div>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

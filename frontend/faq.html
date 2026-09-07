@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions | CareBridge Hospital</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="demo-banner">
+    <span class="badge-pill">DEMO DATA</span>
+    <span>CareBridge Demo Hospital • Fictional healthcare project evaluation environment</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="/index.html" class="brand-logo">
+        <div class="logo-icon">CB</div>
+        <div class="brand-text">
+          <span class="brand-title">CareBridge</span>
+          <span class="brand-sub">Hospital Assistant</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/chatbot.html">AI Assistant</a></li>
+          <li><a href="/doctors.html">Doctors</a></li>
+          <li><a href="/departments.html">Departments</a></li>
+          <li><a href="/appointments.html">Appointments</a></li>
+          <li><a href="/faq.html" class="active">FAQ</a></li>
+          <li id="nav-dashboard-link" style="display:none;"><a href="/dashboard.html">Dashboard</a></li>
+          <li id="nav-admin-link" style="display:none;"><a href="/admin.html" style="color:var(--danger);font-weight:700;">Admin Panel</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions" id="navbar-actions"></div>
+      <button class="hamburger" id="hamburger-btn">☰</button>
+    </div>
+  </header>
+
+  <main class="container container-narrow" style="padding:3.5rem 1.25rem;">
+    <div class="section-header">
+      <span class="tag">Knowledge Base</span>
+      <h1 style="font-size:2.2rem;margin-bottom:0.5rem;">Frequently Asked Questions</h1>
+      <p style="color:var(--text-muted);">Find immediate answers regarding admission, doctor appointments, cashless insurance, and visiting policies.</p>
+    </div>
+
+    <!-- Search Box -->
+    <div class="card" style="margin-bottom:2rem;padding:1rem;">
+      <input type="text" id="faq-search" class="form-control" placeholder="🔍 Search FAQs by question keyword (e.g. visiting, insurance, MRI, billing)...">
+    </div>
+
+    <!-- Category Filter Buttons -->
+    <div id="faq-category-filters" style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;justify-content:center;">
+      <button type="button" class="btn btn-primary btn-sm" data-category="all">All Questions</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-category="General">General</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-category="Appointments">Appointments</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-category="Doctors">Doctors</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-category="Departments">Departments</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-category="Billing">Billing</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-category="Insurance">Insurance</button>
+      <button type="button" class="btn btn-secondary btn-sm" data-category="Facilities">Facilities</button>
+    </div>
+
+    <!-- Accordion UI -->
+    <div class="faq-accordion" id="faq-accordion">
+      <!-- Injected via script.js -->
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>
